@@ -27,6 +27,62 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-source-wordpress-experimental`,
+      options: {
+        url: `http://localhost/findmymobilehomeWP/graphql`,
+        verbose: true,
+        options: {
+          debug: {
+            graphql: {
+              // writeQueriesToDisk: true,
+              onlyReportCriticalErrors: true,
+            },
+          },
+          html: {
+            createStaticFiles: false,
+            useGatsbyImage: false,
+            imageQuality: 80,
+          },
+          schema: {
+            requestConcurrency: 1, // currently set to undefined
+            previewRequestConcurrency: 1, // currently set to undefined
+          },
+          type: {
+            Comment: {
+              exclude: true,
+            },
+            Refund: {
+              exclude: true,
+            },
+            TaxRate: {
+              exclude: true,
+            },
+            ShippingMethod: {
+              exclude: true,
+            },
+            PostFormat: {
+              exclude: true,
+            },
+            ContentType: {
+              exclude: true,
+            },
+            Order: {
+              exclude: true,
+            },
+            Coupon: {
+              exclude: true,
+            },
+            UserRole: {
+              exclude: true,
+            },
+            User: {
+              exclude: true,
+            },
+          },
+        },
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

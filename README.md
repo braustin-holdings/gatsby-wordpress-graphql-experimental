@@ -1,3 +1,21 @@
+## Notes:
+* WP Needs the following plugins and specified versions installed (EasyWP)
+  * WP Gatsby v0.9.1
+  * WP GraphQL v1.0.5
+  * WPGraphQL for Advanced Custom Fields v0.3.4 (Bug: can't save custom field set when enabled)
+  * WPGraphQL WooCommerce (WooGraphQL) v0.60
+  * FindMyMobileHome WooCustomizations (our plugin)
+
+* When registering, we need to expose all CPTs and Custom Taxonomies to WPGraphQL: `show_in_graphql => true` (fmmh-woocustomizations)
+* Product Attribute slugs must use "_ "instead of "-" (Ex: "pa_wall-types" slug must be changed to "pa_wall_types") (fmmh-woocustomizations)
+* Delete any missing media (floorplan images) (EasyWP)
+* Can expose existing Taxonomies and CPTs that we do not have access to in other plugins using the `register_taxonomy_args` filter in WP
+* Can create, modify, exclude GraphQL fields [https://www.wpgraphql.com/docs/graphql-resolvers/](https://www.wpgraphql.com/docs/graphql-resolvers/)
+  * `graphql_register_types`
+  * `graphql_pre_resolve_field`
+  * `graphql_resolve_field`
+  * `graphql_RootQuery_fields`
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
