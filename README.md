@@ -1,3 +1,5 @@
+Exploring the gatsby-source-wordpress-experimental plugin.
+
 ## Notes:
 * WP Needs the following plugins and specified versions installed (EasyWP)
   * WP Gatsby v0.9.1
@@ -15,6 +17,29 @@
   * `graphql_pre_resolve_field`
   * `graphql_resolve_field`
   * `graphql_RootQuery_fields`
+
+
+## Example Queries
+See `src/gatsby-node.js` and examples noted below.
+
+### Get the ImageEngine Settings
+
+```
+// get image engine settings
+query GetImageEngineSettings {
+  allWordpressWpImageEngine {
+    edges {
+      node {
+        enabled
+        url
+      }
+    }
+  }
+}
+```
+
+
+---
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">

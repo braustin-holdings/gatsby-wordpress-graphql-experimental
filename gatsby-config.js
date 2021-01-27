@@ -42,13 +42,30 @@ module.exports = {
           html: {
             createStaticFiles: false,
             useGatsbyImage: false,
-            imageQuality: 80,
           },
           schema: {
             requestConcurrency: 1, // currently set to undefined
             previewRequestConcurrency: 1, // currently set to undefined
           },
+          // not sure if this works?
+          // excludeFieldNames: [
+          //   `Coupon`,
+          //   `Comment`,
+          //   `Order`,
+          //   `ContentType`,
+          //   `TaxRate`,
+          //   `ShippingClass`,
+          //   `ShippingMethod`,
+          //   `PostFormat`,
+          //   `Refund`,
+          //   `Tag`,
+          //   `VisibleProduct`,
+          // ],
+          // not sure if this works?
           type: {
+            Testimonial: {
+              exclude: true,
+            },
             Comment: {
               exclude: true,
             },
@@ -66,6 +83,11 @@ module.exports = {
             },
             ContentType: {
               exclude: true,
+            },
+            MediaItem: {
+              lazyNodes: true,
+              // beforeChangeNode: () => {},
+              // exclude: true,
             },
             Order: {
               exclude: true,
