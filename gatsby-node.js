@@ -19,10 +19,20 @@ exports.createPages = async ({ graphql, actions }) => {
             slug
           }
         }
+        allWpProductCategory {
+          nodes {
+              id
+              slug
+          }
+        }
       }
     `)
     // console.log(result.data.allWpPost.nodes[0])
-    const { allWpPage, allWpPost } = result.data
+    const {
+      allWpPage,
+      allWpPost,
+      allWpProductCategory,      
+    } = result.data
 
     // posts
     const postTemplate = path.resolve(`./src/templates/post.js`)
@@ -46,6 +56,19 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage({
         path: `/${slug}`,
         component: slash(pageTemplate),
+        context: { id },
+      })
+    })
+
+    // archive
+    const archiveTemplate = path.resolve(`./src/templates/archive.js`)
+    allWpProductCategory.nodes.forEach(({
+      id,
+      slug,
+    }) => {
+      createPage({
+        path: `/homes/${slug}`,
+        component: slash(archiveTemplate),
         context: { id },
       })
     })
