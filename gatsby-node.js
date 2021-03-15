@@ -19,6 +19,12 @@ exports.createPages = async ({ graphql, actions }) => {
             slug
           }
         }
+        allWpProduct {
+          nodes {
+            id
+            slug
+          }
+        }
         allWpProductCategory {
           nodes {
               id
@@ -27,10 +33,11 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     `)
-    // console.log(result.data.allWpPost.nodes[0])
+    
     const {
       allWpPage,
       allWpPost,
+      allWpProduct,
       allWpProductCategory,      
     } = result.data
 
@@ -60,6 +67,19 @@ exports.createPages = async ({ graphql, actions }) => {
       })
     })
 
+    // Single Product - Homes
+    const productTemplate = path.resolve(`./src/templates/product.js`)
+    allWpProduct.nodes.forEach(({
+      id,
+      slug,
+    }) => {
+      createPage({
+        path: `/product/${slug}`,
+        component: slash(productTemplate),
+        context: { id },
+      })
+    })
+
     // archive
     const archiveTemplate = path.resolve(`./src/templates/archive.js`)
     allWpProductCategory.nodes.forEach(({
@@ -72,6 +92,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context: { id },
       })
     })
+    
   } catch(err) {
     throw err
   }
